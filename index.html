@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Pyaari Hiya ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:"Segoe UI", sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#fbc2eb);
+    color:white;
+}
+
+/* ---------- COMMON ---------- */
+
+.screen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    transition:1s;
+}
+
+.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(1.1);
+}
+
+/* ---------- INTRO ---------- */
+
+#intro{
+    flex-direction:column;
+    padding:25px;
+}
+
+.intro-small{
+    font-size:18px;
+    margin-bottom:20px;
+    opacity:.9;
+}
+
+.intro-title{
+    font-size:clamp(34px,9vw,60px);
+    animation:pulse 2s infinite;
+}
+
+.intro-heart{
+    font-size:70px;
+    margin:25px 0;
+    animation:heartbeat 1.3s infinite;
+}
+
+.open-btn{
+    border:none;
+    padding:16px 32px;
+    border-radius:50px;
+    background:white;
+    color:#ff477e;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.open-btn:hover{
+    transform:scale(1.08);
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.05)}
+}
+
+@keyframes heartbeat{
+    50%{transform:scale(1.2)}
+}
+
+
+/* ---------- ENVELOPE ---------- */
+
+#envelopeScreen{
+    flex-direction:column;
+}
+
+.envelope{
+    position:relative;
+    width:280px;
+    height:190px;
+    background:#fff;
+    border-radius:8px;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+    cursor:pointer;
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:140px solid transparent;
+    border-right:140px solid transparent;
+    border-top:100px solid #ffd6e7;
+    z-index:3;
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.open:before{
+    transform:rotateX(180deg);
+}
+
+.letter{
+    position:absolute;
+    width:240px;
+    height:150px;
+    background:#fff8fb;
+    color:#ff477e;
+    left:20px;
+    top:20px;
+    border-radius:5px;
+    padding:25px;
+    font-weight:bold;
+    transition:1s;
+    z-index:2;
+}
+
+.envelope.open .letter{
+    transform:translateY(-130px);
+}
+
+.envelope-text{
+    margin-top:35px;
+    font-size:16px;
+}
+
+
+/* ---------- MAIN ---------- */
+
+#main{
+    flex-direction:column;
+    padding:20px;
+}
+
+.main-title{
+    font-size:clamp(32px,8vw,52px);
+    margin-bottom:8px;
+}
+
+.main-subtitle{
+    font-size:16px;
+    opacity:.9;
+    margin-bottom:20px;
+}
+
+
+/* ---------- CAKE ---------- */
+
+.cake-area{
+    position:relative;
+    width:300px;
+    height:280px;
+}
+
+.cake{
+    position:absolute;
+    width:230px;
+    height:150px;
+    left:35px;
+    bottom:20px;
+    transition:1s;
+}
+
+.cake.cut{
+    transform:scale(.85) rotate(-4deg);
+}
+
+.layer{
+    position:absolute;
+    width:230px;
+    height:65px;
+    border-radius:15px;
+    background:linear-gradient(#ff6f91,#ff477e);
+    box-shadow:
+        inset 0 -10px rgba(170,30,80,.15),
+        0 10px 20px rgba(0,0,0,.15);
+}
+
+.layer.top{
+    top:40px;
+}
+
+.layer.bottom{
+    top:100px;
+}
+
+.cream{
+    position:absolute;
+    top:75px;
+    width:230px;
+    height:30px;
+    border-radius:50%;
+    background:#fff5fa;
+    z-index:3;
+}
+
+.candle{
+    position:absolute;
+    width:13px;
+    height:55px;
+    top:-15px;
+    background:repeating-linear-gradient(
+        45deg,
+        white 0 7px,
+        #ff75a0 7px 14px
+    );
+    border-radius:5px;
+    z-index:5;
+}
+
+.c1{left:50px}
+.c2{left:108px}
+.c3{left:166px}
+
+.flame{
+    position:absolute;
+    width:18px;
+    height:27px;
+    background:#ffd166;
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+    top:-45px;
+    box-shadow:0 0 25px #ffd166;
+    animation:flicker .5s infinite alternate;
+    z-index:6;
+}
+
+.f1{left:48px}
+.f2{left:106px}
+.f3{left:164px}
+
+@keyframes flicker{
+    to{
+        transform:rotate(-40deg) scale(1.15);
+    }
+}
+
+
+/* ---------- BUTTON ---------- */
+
+.cut-btn{
+    border:none;
+    padding:16px 35px;
+    border-radius:50px;
+    background:white;
+    color:#ff477e;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.cut-btn:hover{
+    transform:scale(1.08);
+}
+
+.cut-btn:disabled{
+    opacity:.7;
+}
+
+
+/* ---------- NOTE ---------- */
+
+#noteScreen{
+    padding:20px;
+    background:rgba(255,80,130,.96);
+}
+
+.note-card{
+    width:min(95%,500px);
+    max-height:90vh;
+    overflow:auto;
+    padding:35px 25px;
+    border-radius:30px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.4);
+    box-shadow:0 25px 70px rgba(0,0,0,.3);
+    animation:noteIn 1.2s;
+}
+
+@keyframes noteIn{
+    from{
+        transform:translateY(100px) scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+}
+
+.note-title{
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.note-text{
+    font-size:18px;
+    line-height:1.85;
+}
+
+.note-text strong{
+    font-size:21px;
+}
+
+.final-love{
+    margin-top:25px;
+    font-size:27px;
+    animation:heartbeat 1.5s infinite;
+}
+
+
+/* ---------- FLOATING HEARTS ---------- */
+
+.heart{
+    position:fixed;
+    bottom:-40px;
+    z-index:100;
+    pointer-events:none;
+    animation:floatHeart linear forwards;
+}
+
+@keyframes floatHeart{
+    from{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+    15%{opacity:1}
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+
+/* ---------- CONFETTI ---------- */
+
+.confetti{
+    position:fixed;
+    width:9px;
+    height:15px;
+    top:-20px;
+    z-index:200;
+    animation:confettiFall 3.5s linear forwards;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="screen" id="intro">
+
+    <div class="intro-small">
+        I made something special for someone very special... 💗
+    </div>
+
+    <div class="intro-heart">
+        ❤️
+    </div>
+
+    <h1 class="intro-title">
+        Meri Pyaari Hiya
+    </h1>
+
+    <br>
+
+    <button class="open-btn" onclick="openSurprise()">
+        💌 Open Your Surprise
+    </button>
+
+</section>
+
+
+<!-- ================= ENVELOPE ================= -->
+
+<section class="screen hidden" id="envelopeScreen">
+
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+
+        <div class="letter">
+            💗<br><br>
+            For My Pyaari Hiya
+        </div>
+
+    </div>
+
+    <div class="envelope-text">
+        Tap the letter, meri jaan... 🥹❤️
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN CAKE ================= -->
+
+<section class="screen hidden" id="main">
+
+    <h1 class="main-title">
+        Happy Birthday, Hiya 🎂
+    </h1>
+
+    <p class="main-subtitle">
+        Today is all about you, my love ❤️
+    </p>
+
+
+    <div class="cake-area">
+
+        <div class="cake" id="cake">
+
+            <div class="candle c1"></div>
+            <div class="candle c2"></div>
+            <div class="candle c3"></div>
+
+            <div class="flame f1"></div>
+            <div class="flame f2"></div>
+            <div class="flame f3"></div>
+
+            <div class="layer top"></div>
+
+            <div class="cream"></div>
+
+            <div class="layer bottom"></div>
+
+        </div>
+
+    </div>
+
+
+    <button class="cut-btn" id="cutBtn" onclick="cutCake()">
+        🎂 Cut The Cake 🎂
+    </button>
+
+</section>
+
+
+<!-- ================= BIRTHDAY NOTE ================= -->
+
+<section class="screen hidden" id="noteScreen">
+
+    <div class="note-card">
+
+        <h2 class="note-title">
+            🎂 Happiest Birthday 🎂
+        </h2>
+
+        <div class="note-text">
+
+            <strong>
+                Meri Pyaari Hiya 🤌🏻💗
+            </strong>
+
+            <br><br>
+
+            I love you bohot bohot zyada. ❤️
+
+            <br>
+
+            Tum meri jaan ho,
+            aur jab tum khush hoti ho na,
+            toh main bohot zyada khush hota hoon. 🥹💗
+
+            <br><br>
+
+            Tum bohot pyaari ho,
+            aur mere jigar ka tukda ho. 🫶🏻
+
+            <br><br>
+
+            Bas humesha aise hi khush raho
+            aur mere saath raho. ❤️
+
+            <br><br>
+
+            <strong>
+                Once again, happiest birthday my love! ❤️
+            </strong>
+
+        </div>
+
+        <div class="final-love">
+            I Love You Forever 🫶🏻💗
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+
+/* ---------- SCREEN HELPERS ---------- */
+
+function showScreen(id){
+
+    document.querySelectorAll(".screen").forEach(screen=>{
+        screen.classList.add("hidden");
+    });
+
+    document.getElementById(id).classList.remove("hidden");
+}
+
+
+/* ---------- OPEN SURPRISE ---------- */
+
+function openSurprise(){
+
+    showScreen("envelopeScreen");
+
+    startHearts();
+
+}
+
+
+/* ---------- OPEN ENVELOPE ---------- */
+
+function openEnvelope(){
+
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.add("open");
+
+    setTimeout(()=>{
+
+        showScreen("main");
+
+    },1500);
+
+}
+
+
+/* ---------- CUT CAKE ---------- */
+
+function cutCake(){
+
+    const cake =
+        document.getElementById("cake");
+
+    const button =
+        document.getElementById("cutBtn");
+
+
+    button.disabled=true;
+
+    button.innerHTML =
+        "💗 Making a Wish...";
+
+
+    /* Extinguish candles */
+
+    document.querySelectorAll(".flame")
+        .forEach(flame=>{
+            flame.style.display="none";
+        });
+
+
+    /* Cake animation */
+
+    cake.classList.add("cut");
+
+
+    /* Big celebration */
+
+    createConfetti(180);
+
+    createHeartBurst();
+
+
+    setTimeout(()=>{
+
+        showScreen("noteScreen");
+
+        createHeartBurst();
+
+    },2200);
+
+}
+
+
+/* ---------- CONFETTI ---------- */
+
+function createConfetti(amount){
+
+    for(let i=0;i<amount;i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.style.left =
+            Math.random()*100+"vw";
+
+        piece.style.background =
+            randomColor();
+
+        piece.style.animationDelay =
+            Math.random()*1.5+"s";
+
+        piece.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(()=>{
+            piece.remove();
+        },5000);
+
+    }
+
+}
+
+
+/* ---------- RANDOM COLORS ---------- */
+
+function randomColor(){
+
+    const colors=[
+        "#ff477e",
+        "#ffd166",
+        "#ffffff",
+        "#c77dff",
+        "#ff9f1c",
+        "#72efdd"
+    ];
+
+    return colors[
+        Math.floor(Math.random()*colors.length)
+    ];
+
+}
+
+
+/* ---------- HEARTS ---------- */
+
+function createHeart(){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className="heart";
+
+    const symbols=[
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "💓",
+        "💞",
+        "🫶🏻"
+    ];
+
+    heart.innerHTML =
+        symbols[
+            Math.floor(Math.random()*symbols.length)
+        ];
+
+    heart.style.left =
+        Math.random()*100+"vw";
+
+    heart.style.fontSize =
+        18+Math.random()*25+"px";
+
+    heart.style.animationDuration =
+        5+Math.random()*5+"s";
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+
+}
+
+
+function startHearts(){
+
+    setInterval(createHeart,650);
+
+}
+
+
+function createHeartBurst(){
+
+    for(let i=0;i<35;i++){
+
+        setTimeout(()=>{
+            createHeart();
+        },i*50);
+
+    }
+
+}
+
+
+</script>
+
+</body>
+</html>
